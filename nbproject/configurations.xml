@@ -12,8 +12,10 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>node.cpp</itemPath>
-      <itemPath>node.h</itemPath>
+      <itemPath>Node.cpp</itemPath>
+      <itemPath>Node.h</itemPath>
+      <itemPath>counter.h</itemPath>
+      <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -40,9 +42,13 @@
           <standard>8</standard>
         </ccTool>
       </compileType>
-      <item path="node.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Node.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="node.h" ex="false" tool="3" flavor2="0">
+      <item path="Node.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="counter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -65,9 +71,13 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="node.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Node.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="node.h" ex="false" tool="3" flavor2="0">
+      <item path="Node.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="counter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>
