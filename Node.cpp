@@ -6,12 +6,12 @@
  */
 
 #include "Node.h"
-
+#include <sstream>
 Node::Node() {
 }
 
 Node::~Node() {
-    for(int i=0;i<_numChildren;i++){
+    for(int i=0;i<_maxChildren;i++){
         if(*(_children+i)!=nullptr){
         delete *(_children+i);
         }
@@ -31,16 +31,17 @@ Node& Node::operator=(const Node& rhs) {
 }
 //Move assignment operator
 
-Node& Node::operator=(const Node&& rhs) {
+Node& Node::operator=(Node&& rhs) {
     if(this!=&rhs){
         _children=std::move(rhs._children);
         _value=std::move(rhs._value);
         _numChildren=std::move(rhs._numChildren);
         _maxChildren=std::move(rhs._maxChildren);
+        rhs._children=nullptr;
     }
 }
 
-    virtual void Node::to_string(std::stringstream ss){
+    void Node::to_string(std::stringstream& ss){
         if(_numChildren==0){
             ss << _value;
         }
@@ -48,6 +49,17 @@ Node& Node::operator=(const Node&& rhs) {
     
     Node::Node(int nc){
         _maxChildren=nc;
+        for(int i=0;i<nc;i++){
+            *(_children+i)=nullptr;
+        }
+    }
+    
+    int Node::getNumChildren(){
+        return _numChildren;
+    }
+    
+    int Node::getMaxChildren(){
+        return _maxChildren;
     }
     
 

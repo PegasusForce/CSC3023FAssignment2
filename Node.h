@@ -8,6 +8,7 @@
 #ifndef NODE_H
 #define	NODE_H
 #include "counter.h"
+#include <sstream>
 class Node:public sjp::counter<Node> {
 public:
     //Default constructor
@@ -17,21 +18,27 @@ public:
     //Copy constructor
     Node(const Node& orig):_maxChildren(orig._maxChildren),_children(orig._children),_numChildren(orig._numChildren),_value(orig._value){};
     //Move Constructor
-    Node(const Node&& orig):_maxChildren(std::move(orig._maxChildren)),_children(std::move(orig._children)),_numChildren(std::move(orig._numChildren)),_value(std::move(orig._value)){};
+    Node(Node&& orig):_maxChildren(std::move(orig._maxChildren)),_children(std::move(orig._children)),_numChildren(std::move(orig._numChildren)),_value(std::move(orig._value)){orig._children=nullptr;};
     //Copy assignment operator
     Node &operator=(const Node& orig);
     //Move assignment operator
-    Node &operator=(const Node&& orig);
+    Node &operator=(Node&& orig);
     //Destuctor
     virtual ~Node();
     
-    virtual void to_string(std::stringstream ss);
+    virtual void to_string(std::stringstream& ss);
+    
+    int getNumChildren();
+    
+    int getMaxChildren();
+    
 private:
     Node** _children;
     int _numChildren=0;
     int _maxChildren;
-    char _value;
+    std::string _value;
 };
+
 
 #endif	/* NODE_H */
 
