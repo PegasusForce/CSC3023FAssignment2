@@ -12,8 +12,8 @@ Node::Node() {
 
 Node::~Node() {
     for(int i=0;i<_maxChildren;i++){
-        if(*(_children+i)!=nullptr){
-        delete *(_children+i);
+        if(_children[i]!=nullptr){
+        delete _children[i];
         }
         _children=nullptr;
     }
@@ -50,7 +50,7 @@ Node& Node::operator=(Node&& rhs) {
     Node::Node(int nc){
         _maxChildren=nc;
         for(int i=0;i<nc;i++){
-            *(_children+i)=nullptr;
+            _children[i]=nullptr;
         }
     }
     
@@ -60,6 +60,14 @@ Node& Node::operator=(Node&& rhs) {
     
     int Node::getMaxChildren(){
         return _maxChildren;
+    }
+    
+    Node* Node::getChild(int i){
+        if(i>=0&&i<_numChildren){
+            return _children[i];
+        }else{
+            return nullptr;
+        }
     }
     
 

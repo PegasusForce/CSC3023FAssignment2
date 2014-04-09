@@ -32,6 +32,8 @@ public:
     
     int getMaxChildren();
     
+    Node* getChild(int i);
+    
 private:
     Node** _children;
     int _numChildren=0;

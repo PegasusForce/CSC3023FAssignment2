@@ -12,6 +12,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Iterator.cpp</itemPath>
+      <itemPath>Iterator.h</itemPath>
       <itemPath>Node.cpp</itemPath>
       <itemPath>Node.h</itemPath>
       <itemPath>counter.h</itemPath>
@@ -42,6 +44,10 @@
           <standard>8</standard>
         </ccTool>
       </compileType>
+      <item path="Iterator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Iterator.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Node.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Node.h" ex="false" tool="3" flavor2="0">
@@ -71,6 +77,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Iterator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Iterator.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Node.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Node.h" ex="false" tool="3" flavor2="0">
