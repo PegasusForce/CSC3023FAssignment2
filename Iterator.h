@@ -20,6 +20,8 @@ private:
     Iterator();
     //Copy constructor
     Iterator(const Iterator& orig):node(orig.node),i(orig.i),stack(orig.stack){};
+    //Standard constructor
+    Iterator(Node* position);
     //Destructor
     virtual ~Iterator();
     
@@ -28,12 +30,13 @@ private:
     std::stack<state> stack;
 public:
     Node* operator*(){return node;}
-    Node& operator++();
-    bool operator==(const Iterator& rhs);
-    bool operator!=(const Iterator& rhs);
-    void operator+(std::size_t distance);
-    void operator-(std::size_t distance);
-    std::size_t operator-(const Iterator& prev);
+    Iterator& operator++();
+    Iterator& operator--();
+    bool operator==(const Iterator& rhs){return node==rhs.node;}
+    bool operator!=(const Iterator& rhs){return node!=rhs.node;}
+    Iterator& operator+(std::size_t distance);
+    Iterator& operator-(std::size_t distance);
+    std::size_t operator-(const Iterator prev);
 
 };
 
