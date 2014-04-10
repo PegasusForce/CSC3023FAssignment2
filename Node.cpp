@@ -19,7 +19,7 @@ Node::~Node() {
     }
     
 }
-//Copy assignment opperator
+//Copy assignment operator
 Node& Node::operator=(const Node& rhs) {
     if(this!=&rhs){
         _children=rhs._children;
@@ -27,7 +27,7 @@ Node& Node::operator=(const Node& rhs) {
         _numChildren=rhs._numChildren;
         _maxChildren=rhs._maxChildren;
     }
-
+    return *this;
 }
 //Move assignment operator
 
@@ -39,6 +39,7 @@ Node& Node::operator=(Node&& rhs) {
         _maxChildren=std::move(rhs._maxChildren);
         rhs._children=nullptr;
     }
+    return *this;
 }
 
     void Node::to_string(std::stringstream& ss){

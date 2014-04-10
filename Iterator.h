@@ -15,6 +15,7 @@ struct state{
     
 };
 class Iterator {
+    friend class ParseTree;
 private:
     //Default constructor
     Iterator();

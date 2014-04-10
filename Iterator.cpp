@@ -17,7 +17,7 @@ Iterator::Iterator(Node* position){
 }
 
 Iterator::~Iterator() {
-    
+    node=nullptr;
 }
 
 Iterator& Iterator::operator++(){
@@ -91,11 +91,11 @@ std::size_t Iterator::operator-(const Iterator prev){
     size_t distance=0;
     Iterator temp = *this;
     while(true){
-        if(*this==prev){
+        if(temp==prev){
             return distance;
         }else{
             distance++;
-           --temp;
+           ++temp;
         }
     }
 }
