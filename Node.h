@@ -7,9 +7,16 @@
 
 #ifndef NODE_H
 #define	NODE_H
-#include "counter.h"
 #include <sstream>
-class Node:public sjp::counter<Node> {
+
+#define UNIT_TESTING     // So that we know whether to include our counter class
+#include "counter.h"     // Object counter header
+
+class Node
+#ifdef UNIT_TESTING
+:public sjp::counter<Node> 
+#endif
+{
 public:
     //Default constructor
     Node();
@@ -33,6 +40,8 @@ public:
     int getMaxChildren();
     
     Node* getChild(int i);
+    
+    int addChild(Node* node);
     
 private:
     Node** _children;

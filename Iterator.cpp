@@ -22,22 +22,24 @@ Iterator::~Iterator() {
 
 Iterator& Iterator::operator++(){
     if(node!=nullptr && node->getNumChildren()>0){
-        state temp = {node,i};
+        state temp = {node,0};
         stack.push(temp);
         node=node->getChild(0);
+      //  i=0;
     }else{
         state temp;
         while(true){
         temp = stack.top();
         if(temp.parent==nullptr){
             node=nullptr;
+          //  i=0;
             break;
         }
        if(temp.index+1<temp.parent->getMaxChildren()){
             temp.index++;
        
             node=temp.parent->getChild(temp.index);
-            
+           // i=temp.index;
             break;
         }else{
             stack.pop();
@@ -56,21 +58,23 @@ Iterator& Iterator::operator+(std::size_t distance){
 }
 Iterator& Iterator::operator--(){
     if(node!=nullptr && node->getNumChildren()>0){
-        state temp = {node,i};
+        state temp = {node,node->getMaxChildren()-1};
         stack.push(temp);
         node=node->getChild(node->getMaxChildren()-1);
+        //i=node->getMaxChildren()-1;
     }else{
         state temp;
         while(true){
         temp = stack.top();
         if(temp.parent==nullptr){
             node=nullptr;
+           // i=0;
             break;
         }
        if(temp.index>0){
             temp.index--;          
             node=temp.parent->getChild(temp.index);
-            
+          //  i=temp.index;
             break;
         }else{
             stack.pop();

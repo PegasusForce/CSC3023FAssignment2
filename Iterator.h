@@ -20,14 +20,14 @@ private:
     //Default constructor
     Iterator();
     //Copy constructor
-    Iterator(const Iterator& orig):node(orig.node),i(orig.i),stack(orig.stack){};
+    Iterator(const Iterator& orig):node(orig.node),stack(orig.stack){};
     //Standard constructor
     Iterator(Node* position);
     //Destructor
     virtual ~Iterator();
     
     Node* node;
-    int i=0;
+    //int i=0;
     std::stack<state> stack;
 public:
     Node* operator*(){return node;}

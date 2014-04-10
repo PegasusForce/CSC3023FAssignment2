@@ -71,5 +71,20 @@ Node& Node::operator=(Node&& rhs) {
         }
     }
     
+     int Node::addChild(Node* child){
+         for(int i=0;i<_maxChildren;i++){
+             if(_children[i]==nullptr){
+                 _children[i]=child;
+                 _numChildren++;
+                 return i;
+             }
+         }
+         try{
+             throw 20; 
+         }catch(int e){
+             std::cout<<"Could not add node '"+child->_value+"', parent full.";
+         }
+         return -1;
+     }
 
 

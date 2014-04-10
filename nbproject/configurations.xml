@@ -18,6 +18,7 @@
       <itemPath>Node.h</itemPath>
       <itemPath>ParseTree.cpp</itemPath>
       <itemPath>ParseTree.h</itemPath>
+      <itemPath>catch.hpp</itemPath>
       <itemPath>counter.h</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -58,6 +59,8 @@
       </item>
       <item path="ParseTree.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="catch.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="counter.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
@@ -94,6 +97,8 @@
       <item path="ParseTree.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ParseTree.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="catch.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="counter.h" ex="false" tool="3" flavor2="0">
       </item>
