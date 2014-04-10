@@ -15,7 +15,7 @@ public:
     //Default constructor
     ParseTree();
     //Standard constructor
-    ParseTree(Node r);
+    ParseTree(Node* r):root(r){};
     //Copy constructor
     ParseTree(const ParseTree& orig):root(orig.root){};
     //Move constructor
@@ -33,8 +33,8 @@ public:
    std::size_t size(){return begin()-end();}
    void erase(Iterator i){delete *i;}
    
-   Iterator insert(Iterator parent, const Node & child);
-   std::ostream& operator<<(std::ostream lhs);
+   Iterator insert(Iterator& parent, const Node & child);
+   std::ostream& operator<<(std::ostream &lhs);
     
 private:
     Node* root=nullptr;

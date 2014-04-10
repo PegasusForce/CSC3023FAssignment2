@@ -11,11 +11,15 @@ Node::Node() {
 }
 
 Node::~Node() {
+    
     for(int i=0;i<_maxChildren;i++){
         if(_children[i]!=nullptr){
+            std::cout<<"Trying to delete node: "+_value<<"Child "<<i<<std::endl;
         delete _children[i];
+        _children[i]=nullptr;
         }
         _children=nullptr;
+        
     }
     
 }
@@ -48,11 +52,15 @@ Node& Node::operator=(Node&& rhs) {
         }
     }
     
-    Node::Node(int nc){
+    Node::Node(int nc, std::string v){
+        std::cout<<"Creating Node: "<<v<<std::endl;
         _maxChildren=nc;
+        //Node* temp[nc];
+        _children = new Node*[nc];
         for(int i=0;i<nc;i++){
             _children[i]=nullptr;
         }
+        _value=v;
     }
     
     int Node::getNumChildren(){

@@ -21,7 +21,7 @@ public:
     //Default constructor
     Node();
     //Standard constructor
-    Node(int nc);
+    Node(int nc, std::string v);
     //Copy constructor
     Node(const Node& orig):_maxChildren(orig._maxChildren),_children(orig._children),_numChildren(orig._numChildren),_value(orig._value){};
     //Move Constructor

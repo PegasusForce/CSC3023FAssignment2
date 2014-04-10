@@ -25,12 +25,17 @@ ParseTree& ParseTree::operator=(ParseTree&& rhs){
     rhs.root=nullptr;
 }
 
-Iterator ParseTree::insert(Iterator parent, const Node & child){
+Iterator ParseTree::insert(Iterator& parent, const Node & child){
   //  Iterator current = Iterator(root);
 //		while(parent!=current){
 //			++current;
 //		}
     Node node = Node(child);
+    if(begin()==end()){
+        root=&node;
+        return Iterator(&node);
+    }
+    
                 int index = parent.node->addChild(&node);
 		if(index!=-1){
                     Iterator copy = Iterator(parent);
@@ -45,7 +50,7 @@ Iterator ParseTree::insert(Iterator parent, const Node & child){
                 }
 		
 }
-std::ostream& ParseTree::operator<<(std::ostream lhs){
+std::ostream& ParseTree::operator<<(std::ostream& lhs){
     Iterator it = begin();
     std::stringstream ss;
     while(it!=end()){
@@ -53,6 +58,7 @@ std::ostream& ParseTree::operator<<(std::ostream lhs){
         ++it;
     }
     lhs<<ss;
+    return lhs;
 }
 
 
