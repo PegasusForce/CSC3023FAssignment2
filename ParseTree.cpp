@@ -9,11 +9,13 @@
 #include <sstream>
 #include <ostream>
 ParseTree::ParseTree() {
+    //std::cout<<"Creating Tree: "<<this<<std::endl;
+    root=nullptr;
 }
 
 ParseTree& ParseTree::operator=(const ParseTree& rhs){
     if(&rhs!=this){
-        root=rhs.root;
+        root=new Node(*rhs.root);
     }
     return *this;
 }
@@ -25,26 +27,24 @@ ParseTree& ParseTree::operator=(ParseTree&& rhs){
     rhs.root=nullptr;
 }
 
-Iterator ParseTree::insert(Iterator& parent, const Node & child){
-  //  Iterator current = Iterator(root);
-//		while(parent!=current){
-//			++current;
-//		}
-    Node node = Node(child);
+Iterator ParseTree::insert(Iterator parent, const Node & child){
+  
+    
     if(begin()==end()){
-        root=&node;
-        return Iterator(&node);
+        root= new Node(child);
+        parent.node=root;
+        return parent;
     }
     
-                int index = parent.node->addChild(&node);
+                int index = parent.node->addChild(child);
 		if(index!=-1){
-                    Iterator copy = Iterator(parent);
+                    Iterator* copy = new Iterator(parent);
                     state temp;
                     temp.parent=parent.node;
                     temp.index=index;//The parent will index the added child
-                    copy.node=&node;
-                    copy.stack.push(temp);
-                    return copy;
+                    copy->node=parent.node->getChild(index);
+                    copy->stack.push(temp);
+                    return *copy;//Note a copy of copy is returned, but copy is not deleted. Possibly deleted during destruction
                 }else{
                     return parent;
                 }
@@ -61,5 +61,13 @@ std::ostream& ParseTree::operator<<(std::ostream& lhs){
     return lhs;
 }
 
-
+std::string ParseTree::print(){
+    Iterator it = begin();
+    std::stringstream ss;
+    while(it!=end()){
+       (*it)->to_string(ss);
+        ++it;
+    }
+    return ss.str();
+}
 

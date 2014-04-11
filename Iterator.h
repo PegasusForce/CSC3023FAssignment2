@@ -30,7 +30,7 @@ private:
     std::stack<state> stack;
 public:
     
-    Iterator(const Iterator& orig):node(orig.node),stack(orig.stack){};
+    Iterator(const Iterator& orig):node(orig.node),stack(orig.stack){/*std::cout<<"Copying Iterator: "<<&orig<<"->"<<this<<std::endl;*/};
     virtual ~Iterator();
     Node* operator*(){return node;}
     Iterator& operator++();

@@ -8,15 +8,18 @@
 #include "Iterator.h"
 
 Iterator::Iterator() {
+   // std::cout<<"Deleting Iterator: "<<this<<std::endl;
 }
 
 Iterator::Iterator(Node* position){
+   // std::cout<<"Creating Iterator: "<<this<<std::endl;
     node = position;
     state parent = {nullptr,0};
     stack.push(parent);
 }
 
 Iterator::~Iterator() {
+   // std::cout<<"Deleting Iterator "<<this<<std::endl;
     node=nullptr;
 }
 
@@ -27,18 +30,18 @@ Iterator& Iterator::operator++(){
         node=node->getChild(0);
       //  i=0;
     }else{
-        state temp;
+        //state temp;
         while(true){
-        temp = stack.top();
-        if(temp.parent==nullptr){
+       // temp = stack.top();
+        if(stack.top().parent==nullptr){
             node=nullptr;
           //  i=0;
             break;
         }
-       if(temp.index+1<temp.parent->getMaxChildren()){
-            temp.index++;
+       if(stack.top().index+1<stack.top().parent->getMaxChildren()){
+            stack.top().index++;
        
-            node=temp.parent->getChild(temp.index);
+            node=stack.top().parent->getChild(stack.top().index);
            // i=temp.index;
             break;
         }else{

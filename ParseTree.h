@@ -15,9 +15,9 @@ public:
     //Default constructor
     ParseTree();
     //Standard constructor
-    ParseTree(Node* r):root(r){};
+    ParseTree(Node* r):root(r){/*std::cout<<"Creating Tree: "<<this<<std::endl;*/}
     //Copy constructor
-    ParseTree(const ParseTree& orig):root(orig.root){};
+    ParseTree(const ParseTree& orig):root(new Node(*orig.root)){};
     //Move constructor
     ParseTree(ParseTree&& orig):root(std::move(orig.root)){orig.root=nullptr;};
     //Copy assignment operator
@@ -25,7 +25,7 @@ public:
     //Move assignment operator
     ParseTree& operator=(ParseTree&& rhs);
     //Destructor
-    virtual ~ParseTree(){clear();}
+    virtual ~ParseTree(){/*std::cout<<"Deleting Tree: "<<this<<std::endl;*/clear();}
     
    Iterator begin(){return Iterator(root);}
    Iterator end(){return Iterator(nullptr);}
@@ -33,11 +33,12 @@ public:
    std::size_t size(){return begin()-end();}
    void erase(Iterator i){delete *i;}
    
-   Iterator insert(Iterator& parent, const Node & child);
+   Iterator insert(Iterator parent, const Node & child);
    std::ostream& operator<<(std::ostream &lhs);
+   std::string print();//placeholder for ostream
     
 private:
-    Node* root=nullptr;
+    Node* root;
 };
 
 #endif	/* PARSETREE_H */

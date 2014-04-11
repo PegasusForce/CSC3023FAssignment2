@@ -23,7 +23,7 @@ public:
     //Standard constructor
     Node(int nc, std::string v);
     //Copy constructor
-    Node(const Node& orig):_maxChildren(orig._maxChildren),_children(orig._children),_numChildren(orig._numChildren),_value(orig._value){};
+    Node(const Node& orig);
     //Move Constructor
     Node(Node&& orig):_maxChildren(std::move(orig._maxChildren)),_children(std::move(orig._children)),_numChildren(std::move(orig._numChildren)),_value(std::move(orig._value)){orig._children=nullptr;};
     //Copy assignment operator
@@ -37,11 +37,13 @@ public:
     
     int getNumChildren();
     
+    std::string getValue(){return _value;}
+    
     int getMaxChildren();
     
     Node* getChild(int i);
     
-    int addChild(Node* node);
+    int addChild(const Node& node);
     
 private:
     Node** _children;

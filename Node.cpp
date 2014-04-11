@@ -11,17 +11,18 @@ Node::Node() {
 }
 
 Node::~Node() {
-    
+  //  std::cout<<"Trying to delete node: "+_value<<" "<<this<<std::endl;
     for(int i=0;i<_maxChildren;i++){
         if(_children[i]!=nullptr){
-            std::cout<<"Trying to delete node: "+_value<<"Child "<<i<<std::endl;
+     //       std::cout<<"Trying to delete node: "+_value<<" Child "<<i<<" "<<_children[i]<<std::endl;
         delete _children[i];
         _children[i]=nullptr;
+        _numChildren--;
         }
-        _children=nullptr;
+        
         
     }
-    
+    //_children=nullptr;
 }
 //Copy assignment operator
 Node& Node::operator=(const Node& rhs) {
@@ -32,6 +33,14 @@ Node& Node::operator=(const Node& rhs) {
         _maxChildren=rhs._maxChildren;
     }
     return *this;
+}
+
+Node::Node(const Node& rhs){
+   // std::cout<<"Copying Node "<<rhs._value<<": "<<&rhs<<"->"<<this<<std::endl;
+   _children=rhs._children;
+    _value=rhs._value;
+        _numChildren=rhs._numChildren;
+        _maxChildren=rhs._maxChildren;
 }
 //Move assignment operator
 
@@ -49,18 +58,21 @@ Node& Node::operator=(Node&& rhs) {
     void Node::to_string(std::stringstream& ss){
         if(_numChildren==0){
             ss << _value;
-        }
+        
     }
-    
+    }
     Node::Node(int nc, std::string v){
-        std::cout<<"Creating Node: "<<v<<std::endl;
+       // std::cout<<"Creating Node "<<v<<": "<<this<<std::endl;
         _maxChildren=nc;
-        //Node* temp[nc];
+    //    Node* array[3]; 
+
         _children = new Node*[nc];
         for(int i=0;i<nc;i++){
             _children[i]=nullptr;
         }
+       
         _value=v;
+   
     }
     
     int Node::getNumChildren(){
@@ -79,10 +91,10 @@ Node& Node::operator=(Node&& rhs) {
         }
     }
     
-     int Node::addChild(Node* child){
+     int Node::addChild(const Node& child){
          for(int i=0;i<_maxChildren;i++){
              if(_children[i]==nullptr){
-                 _children[i]=child;
+                 _children[i]=new Node(child);
                  _numChildren++;
                  return i;
              }
@@ -90,7 +102,7 @@ Node& Node::operator=(Node&& rhs) {
          try{
              throw 20; 
          }catch(int e){
-             std::cout<<"Could not add node '"+child->_value+"', parent full.";
+             //std::cout<<"Could not add node '"<<getValue()<<"' ";
          }
          return -1;
      }
