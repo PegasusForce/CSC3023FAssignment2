@@ -23,23 +23,8 @@ int main(int argc, char** argv) {
 */
 TEST_CASE("TEST", "")
 {
-   /* SECTION("Section1"){
-        Node* array[3];
-        Node** children = array;
-        children[0]=nullptr;
-        children[1]=nullptr;
-        children[2]=nullptr;
-        Node one = Node(0,"1");
-        Node two = Node(0,"2");
-        Node three = Node(0,"3");
-        children[0]=&one;
-        children[1]=&two;
-        children[2]=&three;
-        REQUIRE(children[0]->getValue()=="1");
-        REQUIRE(children[1]->getValue()=="2");
-        REQUIRE(children[2]->getValue()=="3");
-    }*/
-    SECTION("Section2"){
+   
+    SECTION("Simple Sentence"){
         {
             Node root = Node(4,"root");
         ParseTree testTree = ParseTree();
@@ -66,12 +51,13 @@ TEST_CASE("TEST", "")
         REQUIRE((*it)->getChild(1)->getChild(1)->getValue()=="ran ");
         REQUIRE((*it)->getChild(2)->getValue()=="away ");
         REQUIRE((*it)->getChild(3)->getValue()=="again ");*/
+       cout<<it;
         }
              Node::print_counts(std::cout, "Node");
            
           
        
-       // cout<<it;
+        
         
 }
 }
