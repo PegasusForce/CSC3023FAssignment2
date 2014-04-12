@@ -50,18 +50,9 @@ Iterator ParseTree::insert(Iterator parent, const Node & child){
                 }
 		
 }
-std::ostream& ParseTree::operator<<(std::ostream& lhs){
-    Iterator it = begin();
-    std::stringstream ss;
-    while(it!=end()){
-       (*it)->to_string(ss);
-        ++it;
-    }
-    lhs<<ss;
-    return lhs;
-}
 
-std::string ParseTree::print(){
+
+/*std::string ParseTree::print(){
     Iterator it = begin();
     std::stringstream ss;
     while(it!=end()){
@@ -69,5 +60,5 @@ std::string ParseTree::print(){
         ++it;
     }
     return ss.str();
-}
+}*/
 

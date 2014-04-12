@@ -34,12 +34,21 @@ public:
    void erase(Iterator i){delete *i;}
    
    Iterator insert(Iterator parent, const Node & child);
-   std::ostream& operator<<(std::ostream &lhs);
-   std::string print();//placeholder for ostream
+  friend std::ostream& operator<<(std::ostream &lhs, ParseTree& rhs);
+  // std::string print();//placeholder for ostream
     
 private:
     Node* root;
 };
-
+inline std::ostream& operator<<(std::ostream& lhs,ParseTree& rhs){
+    Iterator it = rhs.begin();
+    std::stringstream ss;
+    while(it!=rhs.end()){
+       (*it)->to_string(ss);
+        ++it;
+    }
+    lhs<<ss.str();
+    return lhs;
+}
 #endif	/* PARSETREE_H */
 

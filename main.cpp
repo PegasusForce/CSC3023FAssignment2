@@ -26,7 +26,7 @@ TEST_CASE("TEST", "")
    
     SECTION("Simple Sentence"){
         {
-            Node root = Node(4,"root");
+            Compound root = Compound(4);
         ParseTree testTree = ParseTree();
         
            Iterator it = testTree.insert(testTree.begin(),root);
@@ -43,7 +43,8 @@ TEST_CASE("TEST", "")
        testTree.insert(parent1,two2);
        testTree.insert(it,three);
        testTree.insert(it,four);
-       std::cout<<testTree.print()<<"."<<std::endl;
+       std::cout<<testTree<<std::endl;
+       
     /*    REQUIRE((*it)->getValue()=="root");
         REQUIRE((*it)->getChild(0)->getValue()=="The ");
         REQUIRE((*it)->getChild(1)->getValue()=="<parent>");
@@ -51,7 +52,7 @@ TEST_CASE("TEST", "")
         REQUIRE((*it)->getChild(1)->getChild(1)->getValue()=="ran ");
         REQUIRE((*it)->getChild(2)->getValue()=="away ");
         REQUIRE((*it)->getChild(3)->getValue()=="again ");*/
-       cout<<it;
+       
         }
              Node::print_counts(std::cout, "Node");
            

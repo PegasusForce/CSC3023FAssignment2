@@ -107,4 +107,19 @@ Node& Node::operator=(Node&& rhs) {
          return -1;
      }
 
+     Compound::Compound(int num):Node(num+2,"<compound>"){
+      
+         _children[0]=new Node(0,"\n{\n");
+         _children[num+1]=new Node(0,"\n}\n");
+         _numChildren=2;
+         
+     }
+     
+     void Compound::to_string(std::stringstream ss){
+         
+     }
+     
+     Statement::Statement(std::string var,std::string exp):Node(3,"<statement>"){
+         
+     }
 

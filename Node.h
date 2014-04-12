@@ -45,13 +45,36 @@ public:
     
     int addChild(const Node& node);
     
-private:
+protected:
     Node** _children;
     int _numChildren=0;
     int _maxChildren;
     std::string _value;
 };
+class Compound: public Node{
+public:
+    Compound(int num);
+    void to_string(std::stringstream ss);
+};
 
+class Statement: public Node{
+    Statement(std::string var,std::string exp);
+};
 
+class Expression: public Node{
+    
+};
+
+class If: public Node{
+    
+};
+
+class While:public Node{
+    
+};
+
+class FunctionCall: public Node{
+    
+};
 #endif	/* NODE_H */
 
