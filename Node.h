@@ -56,8 +56,8 @@ public:
     Compound(int num);
     void to_string(std::stringstream& ss){}
     ~Compound();
-    Compound(const Compound& orig);
-    Compound(const Compound&& orig);
+    Compound(const Compound& orig):Node(orig){}
+    Compound(const Compound&& orig):Node(orig){}
 };
 
 class Expression: public Node{

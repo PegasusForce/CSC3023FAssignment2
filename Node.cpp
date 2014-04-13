@@ -269,7 +269,7 @@ FunctionCall::~FunctionCall() {
     }
 }
 
-Compound::Compound(const Compound& orig){
+/*Compound::Compound(const Compound& orig){
     _maxChildren=orig._maxChildren;
     _numChildren=orig._numChildren;
     _children=orig._children;
@@ -281,5 +281,5 @@ Compound::Compound(const Compound&& orig){
     _numChildren=std::move(orig._numChildren);
     _children=std::move(orig._children);
     _value=std::move(orig._value);
-}
+}*/
 
