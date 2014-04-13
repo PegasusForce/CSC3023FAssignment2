@@ -38,14 +38,13 @@ public:
   // std::string print();//placeholder for ostream
     
 private:
-    Node* root;
+   Node* root;
 };
 inline std::ostream& operator<<(std::ostream& lhs,ParseTree& rhs){
     Iterator it = rhs.begin();
     std::stringstream ss;
     while(it!=rhs.end()){
-        Node* temp=*it;
-       temp->to_string(ss);
+        (*it)->Node::to_string(ss);
         ++it;
     }
     lhs<<ss.str();

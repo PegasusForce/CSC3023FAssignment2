@@ -51,7 +51,7 @@ Node& Node::operator=(Node&& rhs) {
 }
 
 void Node::to_string(std::stringstream& ss) {
-    if (_maxChildren == 0) {
+    if (_maxChildren == 0 || _value == "if" || _value == "while") {//Don't print parent nodes except for if statements
         ss << _value;
 
     }
@@ -108,20 +108,20 @@ int Node::addChild(const Node& child) {
 
 Compound::Compound(int num) : Node(num + 2, "<compound>") {
 
-    _children[0] = new Node(0, "\n{\n");
+    _children[0] = new Node(0, "{\n");
     _children[num + 1] = new Node(0, "\n}\n");
     _numChildren = 2;
 
 }
 
-Statement::Statement(std::string var, const Expression& exp) : Node(3, "<statement>") {
+Statement::Statement(std::string var,std::string mid, const Expression& exp) : Node(3, "<statement>") {
     _children[0] = new Node(0, var);
-    _children[1] = new Node(0, "=");
+    _children[1] = new Node(0, mid);
     _children[2] = new Expression(exp);
     _numChildren = 3;
 }
 
-If::If(const Expression& ex, const Compound& tru, const Compound& fals) : Node(4, "<if>") {
+If::If(const Expression& ex, const Compound& tru, const Compound& fals) : Node(4, "if") {
     _children[0] = new Expression(ex);
     _children[1] = new Compound(tru);
     _children[2] = new Node(0, "else ");
@@ -130,7 +130,7 @@ If::If(const Expression& ex, const Compound& tru, const Compound& fals) : Node(4
 }
 
 Expression::Expression(std::string lhs) : Node(1, "<expression>") {
-    _children[0] = new Node(0, lhs);
+    _children[0] = new Node(0, lhs+"\n");
     _numChildren = 1;
 }
 
@@ -175,7 +175,7 @@ Expression::Expression(std::string lhs, std::string mid, const Expression& rhs) 
     _numChildren = 3;
 }
 
-While::While(const Expression& exp, const Compound& comp) : Node(2, "<while>") {
+While::While(const Expression& exp, const Compound& comp) : Node(2, "while") {
     _children[0] = new Expression(exp);
     _children[1] = new Compound(comp);
     _numChildren = 2;
@@ -267,5 +267,19 @@ FunctionCall::~FunctionCall() {
 
 
     }
+}
+
+Compound::Compound(const Compound& orig){
+    _maxChildren=orig._maxChildren;
+    _numChildren=orig._numChildren;
+    _children=orig._children;
+    _value=orig._value;
+}
+
+Compound::Compound(const Compound&& orig){
+     _maxChildren=std::move(orig._maxChildren);
+    _numChildren=std::move(orig._numChildren);
+    _children=std::move(orig._children);
+    _value=std::move(orig._value);
 }
 
