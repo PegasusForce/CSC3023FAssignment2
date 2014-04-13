@@ -51,7 +51,7 @@ Node& Node::operator=(Node&& rhs) {
 }
 
 void Node::to_string(std::stringstream& ss) {
-    if (_numChildren == 0) {
+    if (_maxChildren == 0) {
         ss << _value;
 
     }
@@ -268,3 +268,4 @@ FunctionCall::~FunctionCall() {
 
     }
 }
+

@@ -54,7 +54,7 @@ protected:
 class Compound: public Node{
 public:
     Compound(int num);
-    void to_string(std::stringstream ss){};
+    void to_string(std::stringstream& ss){};
     ~Compound();
     Compound(const Compound& orig):Node(orig){}
     Compound(const Compound&& orig):Node(orig){}
@@ -69,7 +69,7 @@ public:
     Expression(const Expression& lhs,std::string mid,std::string rhs);
     Expression(const Expression& lhs,std::string mid, const Expression& rhs);
     Expression(std::string lhs,std::string mid, const Expression& rhs);
-    void to_string(std::stringstream ss){};
+    void to_string(std::stringstream& ss){};
     ~Expression();
     Expression(const Expression& orig):Node(orig){}
     Expression(const Expression&& orig):Node(orig){}
@@ -78,14 +78,14 @@ public:
 class Statement: public Node{
 public:
     Statement(std::string var,const Expression& exp);
-    void to_string(std::stringstream ss){};
+    void to_string(std::stringstream& ss){};
     ~Statement();
 };
 
 class If: public Node{
 public:
     If(const Expression& ex, const Compound& tru, const Compound& fals);
-    void to_string(std::stringstream ss){ss<<"if";}
+    void to_string(std::stringstream& ss){ss<<"if";}
     ~If();
     
 };
@@ -93,14 +93,14 @@ public:
 class While:public Node{
 public:
     While(const Expression& exp, const Compound& comp);
- void to_string(std::stringstream ss){};
+ void to_string(std::stringstream& ss){};
  ~While();
 };
 
 class FunctionCall: public Node{
 public:
    FunctionCall(std::string var, int num);
-   void to_string(std::stringstream ss){};
+   void to_string(std::stringstream& ss){};
    ~FunctionCall();
 };
 #endif	/* NODE_H */

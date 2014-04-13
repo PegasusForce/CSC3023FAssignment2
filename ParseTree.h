@@ -44,7 +44,8 @@ inline std::ostream& operator<<(std::ostream& lhs,ParseTree& rhs){
     Iterator it = rhs.begin();
     std::stringstream ss;
     while(it!=rhs.end()){
-       (*it)->to_string(ss);
+        Node* temp=*it;
+       temp->to_string(ss);
         ++it;
     }
     lhs<<ss.str();

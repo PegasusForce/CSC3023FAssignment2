@@ -75,12 +75,14 @@ TEST_CASE("TEST", "")
             
             
             If parent3 = If(parent2,tru,fals);
-            
+   
+                    
             
             Node root = parent3;
             ParseTree testTree = ParseTree();
             Iterator it = testTree.insert(testTree.begin(),root);
             std::cout<<testTree<<std::endl;
+            
             
         }
              Node::print_counts(std::cout, "Node");
