@@ -54,6 +54,35 @@ TEST_CASE("TEST", "")
         REQUIRE((*it)->getChild(3)->getValue()=="again ");*/
        
         }
+        
+        SECTION("Special Nodes"){
+            Expression lhs = Expression("a","%","2");
+            Expression parent1 = Expression(lhs,"==","0");
+            
+            Expression parent2 = Expression(parent1,0);
+            
+            Compound tru = Compound(1);
+            FunctionCall f1 = FunctionCall("print",1);
+            Node f1n = Node(0,"\"even\"");
+            f1.addChild(f1n);
+            tru.addChild(f1);
+            
+            Compound fals = Compound(1);
+            FunctionCall f2 = FunctionCall("print",1);
+            Node f2n = Node(0,"\"odd\"");
+            f2.addChild(f2n);
+            fals.addChild(f2);
+            
+            
+            If parent3 = If(parent2,tru,fals);
+            
+            
+            Node root = parent3;
+            ParseTree testTree = ParseTree();
+            Iterator it = testTree.insert(testTree.begin(),root);
+            std::cout<<testTree<<std::endl;
+            
+        }
              Node::print_counts(std::cout, "Node");
            
           

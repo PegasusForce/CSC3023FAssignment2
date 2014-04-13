@@ -23,7 +23,7 @@ public:
     //Standard constructor
     Node(int nc, std::string v);
     //Copy constructor
-    Node(const Node& orig);
+    Node(const Node& orig):_maxChildren(orig._maxChildren),_children(orig._children),_numChildren(orig._numChildren),_value(orig._value){/* std::cout<<"Copying Node "<<rhs._value<<": "<<&rhs<<"->"<<this<<std::endl;*/}
     //Move Constructor
     Node(Node&& orig):_maxChildren(std::move(orig._maxChildren)),_children(std::move(orig._children)),_numChildren(std::move(orig._numChildren)),_value(std::move(orig._value)){orig._children=nullptr;};
     //Copy assignment operator
@@ -54,27 +54,54 @@ protected:
 class Compound: public Node{
 public:
     Compound(int num);
-    void to_string(std::stringstream ss);
-};
-
-class Statement: public Node{
-    Statement(std::string var,std::string exp);
+    void to_string(std::stringstream ss){};
+    ~Compound();
+    Compound(const Compound& orig):Node(orig){}
+    Compound(const Compound&& orig):Node(orig){}
 };
 
 class Expression: public Node{
-    
+public:
+    Expression(std::string lhs);
+    Expression(std::string lhs,std::string mid);
+    Expression(std::string lhs, std::string mid, std::string rhs);
+    Expression(const Expression& exp,int dummy);
+    Expression(const Expression& lhs,std::string mid,std::string rhs);
+    Expression(const Expression& lhs,std::string mid, const Expression& rhs);
+    Expression(std::string lhs,std::string mid, const Expression& rhs);
+    void to_string(std::stringstream ss){};
+    ~Expression();
+    Expression(const Expression& orig):Node(orig){}
+    Expression(const Expression&& orig):Node(orig){}
+};
+
+class Statement: public Node{
+public:
+    Statement(std::string var,const Expression& exp);
+    void to_string(std::stringstream ss){};
+    ~Statement();
 };
 
 class If: public Node{
+public:
+    If(const Expression& ex, const Compound& tru, const Compound& fals);
+    void to_string(std::stringstream ss){ss<<"if";}
+    ~If();
     
 };
 
 class While:public Node{
-    
+public:
+    While(const Expression& exp, const Compound& comp);
+ void to_string(std::stringstream ss){};
+ ~While();
 };
 
 class FunctionCall: public Node{
-    
+public:
+   FunctionCall(std::string var, int num);
+   void to_string(std::stringstream ss){};
+   ~FunctionCall();
 };
 #endif	/* NODE_H */
 

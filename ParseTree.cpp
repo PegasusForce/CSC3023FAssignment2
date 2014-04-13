@@ -46,6 +46,7 @@ Iterator ParseTree::insert(Iterator parent, const Node & child){
                     copy->stack.push(temp);
                     return *copy;//Note a copy of copy is returned, but copy is not deleted. Possibly deleted during destruction
                 }else{
+                    std::cout<<"No space left in tree"<<std::endl;
                     return parent;
                 }
 		
